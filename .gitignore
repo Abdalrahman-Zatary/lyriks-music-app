@@ -26,3 +26,16 @@ dist-ssr
 
 # vscode
 .vscode
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+/build
+
+# Local Netlify folder
