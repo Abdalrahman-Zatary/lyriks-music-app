@@ -10,6 +10,7 @@ export const deezerApi = createApi({
     getTopTracks: builder.query({
       query: () => '/chart/0/tracks?limit=50',
       transformResponse: (response) => response.data,
+      keepUnusedDataFor: 100,
     }),
   }),
 });
