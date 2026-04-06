@@ -18,8 +18,6 @@ const TopPlay = () => {
   const { data } = useGetTopTracksQuery();
   const divRef = useRef(null);
 
-  // console.log(data);
-
   const topPlays = data?.slice(0, 5);
 
   useEffect(() => {
@@ -30,8 +28,8 @@ const TopPlay = () => {
     dispatch(playPause(false));
   };
 
-  const handlePlayClick = () => {
-    dispatch(setActiveSong({ song: topPlays[0], data, i: 0 }));
+  const handlePlayClick = (song, i) => {
+    dispatch(setActiveSong({ song, data, i }));
     dispatch(playPause(true));
   };
 
