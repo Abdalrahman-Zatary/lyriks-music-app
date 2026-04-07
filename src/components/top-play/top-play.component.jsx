@@ -84,7 +84,7 @@ const TopPlay = () => {
               style={{ width: '25%', height: '25%' }}
               className="rounded-full w-full animate-slideright"
             >
-              <Link to={`/artists/${song?.artist?.name}`}>
+              <Link to={`/artists/${song?.artist?.id}`}>
                 <img
                   src={song?.artist?.picture}
                   alt="name"
