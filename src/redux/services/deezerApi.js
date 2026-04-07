@@ -24,6 +24,10 @@ export const deezerApi = createApi({
     getArtistDetails: builder.query({
       query: (artistId) => `/artist/${artistId}/`,
     }),
+    getSongsByCountry: builder.query({
+      query: (countryCode) => `/chart/${countryCode}/tracks?limit=50`,
+      transformResponse: (response) => response.data,
+    }),
   }),
 });
 
@@ -32,4 +36,5 @@ export const {
   useGetSongDetailsQuery,
   useGetRelatedSongsQuery,
   useGetArtistDetailsQuery,
+  useGetSongsByCountryQuery,
 } = deezerApi;
