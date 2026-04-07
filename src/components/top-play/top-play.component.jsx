@@ -86,7 +86,7 @@ const TopPlay = () => {
             >
               <Link to={`/artists/${song?.artist?.name}`}>
                 <img
-                  src={song.artist.picture}
+                  src={song?.artist?.picture}
                   alt="name"
                   className="rounded-full w-full object-cover"
                 />
