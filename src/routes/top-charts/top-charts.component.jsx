@@ -1,11 +1,11 @@
 import { useSelector } from 'react-redux';
 
 import { SongCard, Error, Loader } from '../../components/components';
-import { useGetTopChartsQuery } from '../../redux/services/deezerApi';
+import { useGetRandomTopTracksQuery } from '../../redux/services/deezerApi';
 
 const TopCharts = () => {
   const { activeSong, isPlaying } = useSelector((state) => state.player);
-  const { data, isFetching, error } = useGetTopChartsQuery();
+  const { data, isFetching, error } = useGetRandomTopTracksQuery();
 
   if (isFetching) return <Loader title="Loading songs top charts" />;
   if (error) return <Error />;

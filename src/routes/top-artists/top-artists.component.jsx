@@ -3,7 +3,6 @@ import { useGetTopArtistsQuery } from '../../redux/services/deezerApi';
 
 const TopArtists = () => {
   const { data, isFetching, error } = useGetTopArtistsQuery();
-  // console.log(data);
 
   if (isFetching) return <Loader title="Loading top artists" />;
   if (error) return <Error />;

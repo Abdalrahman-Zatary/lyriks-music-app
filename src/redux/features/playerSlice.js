@@ -6,7 +6,7 @@ const INITIAL_STATE = {
   isActive: false,
   isPlaying: false,
   activeSong: {},
-  genreListId: '',
+  genreListId: localStorage.getItem('genre') || 'soul',
 };
 
 const playerSlice = createSlice({
@@ -56,6 +56,7 @@ const playerSlice = createSlice({
 
     selectGenreListId: (state, action) => {
       state.genreListId = action.payload;
+      localStorage.setItem('genre', action.payload);
     },
   },
 });

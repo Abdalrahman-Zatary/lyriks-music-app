@@ -5,7 +5,6 @@ const OFFSET = Math.floor(Math.random() * 100);
 export const deezerApi = createApi({
   reducerPath: 'deezerApi',
   baseQuery: fetchBaseQuery({
-    // baseUrl: 'https://api.deezer.com',
     baseUrl: 'https://corsproxy.io/?https://api.deezer.com',
   }),
   endpoints: (builder) => ({
@@ -22,6 +21,11 @@ export const deezerApi = createApi({
     getTopArtists: builder.query({
       query: () => '/chart/0/artists?limit=50',
       transformResponse: (response) => response.data,
+    }),
+    getTracksByGenre: builder.query({
+      query: (genre) => `/search/track?q=${genre}&limit=50&index=${OFFSET}&order=RANKING`,
+      transformResponse: (response) => response.data,
+      keepUnusedDataFor: 0,
     }),
     getSongDetails: builder.query({
       query: ({ songid }) => `/track/${songid}`,
@@ -44,6 +48,7 @@ export const {
   useGetRandomTopTracksQuery,
   useGetTopChartsQuery,
   useGetTopArtistsQuery,
+  useGetTracksByGenreQuery,
   useGetSongDetailsQuery,
   useGetArtistDetailsQuery,
   useGetRelatedSongsQuery,
