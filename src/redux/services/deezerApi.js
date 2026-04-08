@@ -18,6 +18,10 @@ export const deezerApi = createApi({
       query: () => '/chart/0/tracks?limit=50',
       transformResponse: (response) => response.data,
     }),
+    getTopArtists: builder.query({
+      query: () => '/chart/0/artists?limit=50',
+      transformResponse: (response) => response.data,
+    }),
     getSongDetails: builder.query({
       query: ({ songid }) => `/track/${songid}`,
     }),
@@ -38,6 +42,7 @@ export const deezerApi = createApi({
 export const {
   useGetRandomTopTracksQuery,
   useGetTopChartsQuery,
+  useGetTopArtistsQuery,
   useGetSongDetailsQuery,
   useGetArtistDetailsQuery,
   useGetRelatedSongsQuery,
