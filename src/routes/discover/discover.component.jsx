@@ -2,12 +2,12 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { Error, Loader, SongCard } from '../../components/components';
 import { genres } from '../../assets/constants';
-import { useGetTopTracksQuery } from '../../redux/services/deezerApi';
+import { useGetRandomTopTracksQuery } from '../../redux/services/deezerApi';
 
 const Discover = () => {
   const dispatch = useDispatch();
   const { activeSong, isPlaying } = useSelector((state) => state.player);
-  const { data, isFetching, error } = useGetTopTracksQuery();
+  const { data, isFetching, error } = useGetRandomTopTracksQuery();
   const genreTitle = 'Pop';
 
   if (isFetching) return <Loader title="Loading songs..." />;

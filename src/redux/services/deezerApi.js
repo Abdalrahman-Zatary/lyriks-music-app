@@ -9,7 +9,7 @@ export const deezerApi = createApi({
     baseUrl: 'https://corsproxy.io/?https://api.deezer.com',
   }),
   endpoints: (builder) => ({
-    getTopTracks: builder.query({
+    getRandomTopTracks: builder.query({
       query: () => `/chart/0/tracks?limit=50&index=${OFFSET}`,
       transformResponse: (response) => response.data,
       keepUnusedDataFor: 0,
@@ -32,7 +32,7 @@ export const deezerApi = createApi({
 });
 
 export const {
-  useGetTopTracksQuery,
+  useGetRandomTopTracksQuery,
   useGetSongDetailsQuery,
   useGetRelatedSongsQuery,
   useGetArtistDetailsQuery,
