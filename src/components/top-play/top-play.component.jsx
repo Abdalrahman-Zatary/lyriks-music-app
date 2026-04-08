@@ -7,7 +7,7 @@ import { FreeMode } from 'swiper';
 
 import TopChartCard from '../top-chart-card/top-chart-card.component';
 import { playPause, setActiveSong } from '../../redux/features/playerSlice';
-import { useGetRandomTopTracksQuery } from '../../redux/services/deezerApi';
+import { useGetTopChartsQuery, useGetTopArtistsQuery } from '../../redux/services/deezerApi';
 
 import 'swiper/css';
 import 'swiper/css/free-mode';
@@ -15,10 +15,12 @@ import 'swiper/css/free-mode';
 const TopPlay = () => {
   const dispatch = useDispatch();
   const { activeSong, isPlaying } = useSelector((state) => state.player);
-  const { data } = useGetRandomTopTracksQuery();
+  const { data: topSongsData } = useGetTopChartsQuery();
+  const { data: topArtistsData } = useGetTopArtistsQuery();
   const divRef = useRef(null);
 
-  const topPlays = data?.slice(0, 5);
+  const topPlays = topSongsData?.slice(0, 5);
+  const topArtists = topArtistsData?.slice(0, 5);
 
   useEffect(() => {
     divRef.current.scrollIntoView({ behavior: 'smooth' });
@@ -29,7 +31,7 @@ const TopPlay = () => {
   };
 
   const handlePlayClick = (song, i) => {
-    dispatch(setActiveSong({ song, data, i }));
+    dispatch(setActiveSong({ song, topSongsData, i }));
     dispatch(playPause(true));
   };
 
@@ -78,15 +80,15 @@ const TopPlay = () => {
           modules={[FreeMode]}
           className="mt-4"
         >
-          {topPlays?.map((song) => (
+          {topArtists?.map((artist) => (
             <SwiperSlide
-              key={song.id}
+              key={artist.id}
               style={{ width: '25%', height: '25%' }}
               className="rounded-full w-full animate-slideright"
             >
-              <Link to={`/artists/${song?.artist?.id}`}>
+              <Link to={`/artists/${artist?.id}`}>
                 <img
-                  src={song?.artist?.picture}
+                  src={artist?.picture}
                   alt="name"
                   className="rounded-full w-full object-cover"
                 />

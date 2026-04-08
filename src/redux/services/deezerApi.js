@@ -15,8 +15,9 @@ export const deezerApi = createApi({
       keepUnusedDataFor: 0,
     }),
     getTopCharts: builder.query({
-      query: () => '/chart/0/tracks?limit=50',
+      query: () => `/chart/0/tracks?limit=50&_=${Date.now()}`,
       transformResponse: (response) => response.data,
+      keepUnusedDataFor: 0,
     }),
     getTopArtists: builder.query({
       query: () => '/chart/0/artists?limit=50',
