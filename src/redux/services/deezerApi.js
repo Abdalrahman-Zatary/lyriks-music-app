@@ -14,15 +14,19 @@ export const deezerApi = createApi({
       transformResponse: (response) => response.data,
       keepUnusedDataFor: 0,
     }),
+    getTopCharts: builder.query({
+      query: () => '/chart/0/tracks?limit=50',
+      transformResponse: (response) => response.data,
+    }),
     getSongDetails: builder.query({
       query: ({ songid }) => `/track/${songid}`,
+    }),
+    getArtistDetails: builder.query({
+      query: (artistId) => `/artist/${artistId}/`,
     }),
     getRelatedSongs: builder.query({
       query: (artistId) => `/artist/${artistId}/top?limit=20`,
       transformResponse: (response) => response.data,
-    }),
-    getArtistDetails: builder.query({
-      query: (artistId) => `/artist/${artistId}/`,
     }),
     getSongsByCountry: builder.query({
       query: (countryCode) => `/chart/${countryCode}/tracks?limit=50`,
@@ -33,8 +37,9 @@ export const deezerApi = createApi({
 
 export const {
   useGetRandomTopTracksQuery,
+  useGetTopChartsQuery,
   useGetSongDetailsQuery,
-  useGetRelatedSongsQuery,
   useGetArtistDetailsQuery,
+  useGetRelatedSongsQuery,
   useGetSongsByCountryQuery,
 } = deezerApi;
