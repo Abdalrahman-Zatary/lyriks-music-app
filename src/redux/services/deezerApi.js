@@ -41,6 +41,10 @@ export const deezerApi = createApi({
       query: (countryCode) => `/chart/${countryCode}/tracks?limit=50`,
       transformResponse: (response) => response.data,
     }),
+    getSearchTracks: builder.query({
+      query: (searchTerm) => `/search?q=${searchTerm}/`,
+      transformResponse: (response) => response.data,
+    }),
   }),
 });
 
@@ -53,4 +57,5 @@ export const {
   useGetArtistDetailsQuery,
   useGetRelatedSongsQuery,
   useGetSongsByCountryQuery,
+  useGetSearchTracksQuery,
 } = deezerApi;
