@@ -1,5 +1,5 @@
-const Track = ({ isPlaying, isActive, activeSong }) => (
-  <div className="flex-1 flex items-center justify-start">
+const Track = ({ isPlaying, isActive, activeSong, onExpand }) => (
+  <div className="flex-1 flex items-center justify-start md:cursor-default cursor-pointer" onClick={onExpand}>
     <div
       className={`${isPlaying && isActive ? 'animate-[spin_3s_linear_infinite]' : ''} hidden sm:block h-16 w-16 mr-4`}
     >
