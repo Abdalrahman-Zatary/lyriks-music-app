@@ -38,17 +38,17 @@ const TopPlay = () => {
   return (
     <div
       ref={divRef}
-      className="xl:ml-6 ml-0 xl:mb-0 mb-6 flex-1 xl:max-w-[500px] max-w-full flex flex-col"
+      className="xl:ml-4 ml-0 xl:mb-0 mb-6 flex-1 xl:max-w-[380px] max-w-full flex flex-col"
     >
       <div className="w-full flex flex-col">
         <div className="flex flex-row justify-between items-center">
-          <h2 className="text-white font-bold text-2xl">Top Charts</h2>
+          <h2 className="text-white font-bold text-base">Top Charts</h2>
           <Link to="/top-charts">
-            <p className="text-gray-300 text-base cursor-pointer">See more</p>
+            <p className="text-gray-300 text-xs cursor-pointer">See more</p>
           </Link>
         </div>
 
-        <div className="mt-4 flex flex-col gap-1">
+        <div className="mt-3 flex flex-col gap-1">
           {topPlays?.map((song, i) => (
             <TopChartCard
               key={song.id}
@@ -63,17 +63,17 @@ const TopPlay = () => {
         </div>
       </div>
 
-      <div className="w-full flex flex-col mt-8">
+      <div className="w-full flex flex-col mt-4">
         <div className="flex flex-row justify-between items-center">
-          <h2 className="text-white font-bold text-2xl">Top Artists</h2>
+          <h2 className="text-white font-bold text-base">Top Artists</h2>
           <Link to="/top-artists">
-            <p className="text-gray-300 text-base cursor-pointer">See more</p>
+            <p className="text-gray-300 text-xs cursor-pointer">See more</p>
           </Link>
         </div>
 
         <Swiper
           slidesPerView="auto"
-          spaceBetween={15}
+          spaceBetween={8}
           freeMode
           centeredSlides
           centeredSlidesBounds
@@ -83,7 +83,7 @@ const TopPlay = () => {
           {topArtists?.map((artist) => (
             <SwiperSlide
               key={artist.id}
-              style={{ width: '25%', height: '25%' }}
+              style={{ width: '22%', height: '22%' }}
               className="rounded-full w-full animate-slideright"
             >
               <Link to={`/artists/${artist?.id}`}>

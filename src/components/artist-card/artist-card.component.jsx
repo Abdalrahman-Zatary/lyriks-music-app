@@ -6,10 +6,10 @@ const ArtistCard = ({ artist, i }) => {
   return (
     <div
       onClick={() => navigate(`/artists/${artist?.id}`)}
-      className="flex flex-col w-[250px] p-4 bg-white/5 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg cursor-pointer"
+      className="flex flex-col w-[157px] p-2 bg-white/5 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-md cursor-pointer"
     >
-      <img alt="artist" src={artist?.picture_medium} className="w-full h-56 rounded-lg" />
-      <p className="mt-4 font-semibold text-lg text-white truncate">
+      <img alt="artist" src={artist?.picture_medium} className="w-full h-[135px] rounded-md" />
+      <p className="mt-4 font-semibold text-xs text-white truncate">
         {i + 1}. {artist?.name}
       </p>
     </div>

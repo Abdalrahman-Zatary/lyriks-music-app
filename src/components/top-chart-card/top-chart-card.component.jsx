@@ -10,19 +10,19 @@ const TopChartCard = ({
   i,
 }) => (
   <div className={`w-full flex flex-row items-center ${isPlaying && activeSong?.id === song?.id ? 'bg-[#4c426e]' : ''} hover:bg-[#4c426e] py-2 0-4 rounded-lg cursor-pointer mb-2"`}>
-    <h3 className="font-bold text-base text-white mr-3">{i + 1}.</h3>
+    <h3 className="font-bold text-xs text-white mr-2">{i + 1}.</h3>
     <div className="flex-1 flex flex-row justify-between items-center">
       <img
         src={song?.album?.cover_medium}
-        className="w-20 h-20 rounded-lg"
+        className="w-14 h-14 rounded-md"
         alt={song?.title}
       />
-      <div className="flex flex-1 flex-col justify-center mx-3">
+      <div className="flex flex-1 flex-col justify-center mx-1.5">
         <Link to={`/songs/${song.id}`}>
-          <p className="text-xl font-bold text-white">{song?.title}</p>
+          <p className="text-base font-bold text-white">{song?.title}</p>
         </Link>
         <Link to={`/artists/${song?.artist?.id}`}>
-          <p className="text-base font-bold text-gray-300 mt-1">
+          <p className="text-xs font-bold text-gray-300 mt-1">
             { song?.artist?.name }
           </p>
         </Link>

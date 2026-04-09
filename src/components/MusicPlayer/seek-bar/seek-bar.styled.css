@@ -1,0 +1,8 @@
+.range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  transform: scale(0.7);
+}
+
+.range::-moz-range-thumb {
+  transform: scale(0.7);
+}

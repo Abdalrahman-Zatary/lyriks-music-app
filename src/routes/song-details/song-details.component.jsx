@@ -42,17 +42,17 @@ const SongDetails = () => {
   if (error || errorSong) return <Error />;
 
   return (
-    <div className="flex flex-col gap-10">
+    <div className="flex flex-col gap-8">
       <DetailsHeader artistId="" songData={songData} />
       <div className="mb-10">
-        <h2 className="text-white text-3xl font-bold">Lyrics:</h2>
+        <h2 className="text-white text-2xl font-bold">Lyrics:</h2>
         <div className="mt-5">
           {lyricsData?.lyrics ? (
-            <p className="text-gray-400 text-base my-1 whitespace-pre-line">
+            <p className="text-gray-400 md:text-base text-sm my-1 whitespace-pre-line">
               {lyricsData.lyrics}
             </p>
           ) : (
-            <p className="text-gray-400 text-base my-1">
+            <p className="text-gray-400 md:text-base text-sm my-1">
               Sorry, no lyrics found!
             </p>
           )}
