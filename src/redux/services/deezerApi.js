@@ -42,7 +42,7 @@ export const deezerApi = createApi({
       transformResponse: (response) => response.data,
     }),
     getSearchTracks: builder.query({
-      query: (searchTerm) => `/search?q=${searchTerm}/`,
+      query: (searchTerm) => `/search?q=${searchTerm}`,
       transformResponse: (response) => response.data,
     }),
   }),
