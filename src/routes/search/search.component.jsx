@@ -9,7 +9,7 @@ const Search = () => {
   const { activeSong, isPlaying } = useSelector((state) => state.player);
   const { data, isFetching, error } = useGetSearchTracksQuery(searchTerm);
 
-  if (isFetching) return <Loader />;
+  if (isFetching) return <Loader title={`Searching for "${searchTerm}"`} />;
   if (error) return <Error />;
 
   return (
