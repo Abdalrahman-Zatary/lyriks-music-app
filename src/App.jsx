@@ -1,7 +1,8 @@
 import { useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 
-import { Searchbar, Sidebar, MusicPlayer, TopPlay } from './components/components';
+import { Searchbar, Sidebar, TopPlay } from './components/components';
+import MusicPlayer from './components/MusicPlayer';
 import { ArtistDetails, TopArtists, AroundYou, Discover, Search, SongDetails, TopCharts } from './routes/routes';
 
 const App = () => {

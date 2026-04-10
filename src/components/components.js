@@ -6,7 +6,6 @@ import ArtistCard from './artist-card/artist-card.component';
 import DetailsHeader from './details-header/details-header.component';
 import SongBar from './songbar/songbar.component';
 import RelatedSongs from './related-songs/related-songs.component';
-import MusicPlayer from './MusicPlayer';
 import Loader from './loader/loader.component';
 import Error from './error/error.component';
 
@@ -19,7 +18,6 @@ export {
   DetailsHeader,
   SongBar,
   RelatedSongs,
-  MusicPlayer,
   Loader,
   Error,
 };
