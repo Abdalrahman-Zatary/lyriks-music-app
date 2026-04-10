@@ -3,11 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RiArrowDownSLine } from 'react-icons/ri';
 
 import { nextSong, prevSong, playPause } from '../../redux/features/playerSlice';
-import Controls from './controls/controls.component';
-import Player from './player/player.component';
-import Seekbar from './seek-bar/seek-bar.component';
-import Track from './track/track.component';
-import VolumeBar from './volume-bar/volume-bar.component';
+import { Controls, Player, Seekbar, Track, VolumeBar } from '../../components/components';
 
 const MusicPlayer = () => {
   const { activeSong, currentSongs, currentIndex, isActive, isPlaying } = useSelector((state) => state.player);

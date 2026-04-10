@@ -24,7 +24,7 @@ const Discover = () => {
         <select
           onChange={(e) => dispatch(selectGenreListId(e.target.value))}
           value={genreListId}
-          className="bg-black text-gray-300 p-2 text-xs rounded-md outline-none sm:mt-0 mt-5"
+          className="bg-black text-gray-300 overflow-y-scroll hide-scrollbar p-2 text-xs rounded-md outline-none sm:mt-0 mt-5"
         >
           {genres.map((genre) => (
             <option key={genre.value} value={genre.value}>

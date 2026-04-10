@@ -1,3 +1,9 @@
+import Controls from './music/controls/controls.component';
+import Player from './music/player/player.component';
+import Seekbar from './music/seek-bar/seek-bar.component';
+import Track from './music/track/track.component';
+import VolumeBar from './music/volume-bar/volume-bar.component';
+
 import Sidebar from './sidbar/sidebar.component';
 import Searchbar from './searchbar/searchbar.component';
 import SongCard from './song-card/song-card.component';
@@ -20,4 +26,9 @@ export {
   RelatedSongs,
   Loader,
   Error,
+  Controls,
+  Player,
+  Seekbar,
+  Track,
+  VolumeBar,
 };

@@ -5,6 +5,7 @@ import Search from './search/search.component';
 import SongDetails from './song-details/song-details.component';
 import TopArtists from './top-artists/top-artists.component';
 import TopCharts from './top-charts/top-charts.component';
+import MusicPlayer from './music-player/music-player.component';
 
 export {
   AroundYou,
@@ -14,5 +15,6 @@ export {
   SongDetails,
   TopArtists,
   TopCharts,
+  MusicPlayer,
 };
 
