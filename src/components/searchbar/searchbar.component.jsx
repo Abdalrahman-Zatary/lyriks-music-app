@@ -16,7 +16,7 @@ const Searchbar = () => {
     <form
       onSubmit={handleSubmit}
       autoCapitalize="off"
-      className="h-[30px] flex items-center text-gray-400 focus-within:text-gray-600"
+      className="xl:h-8 h-12 flex items-center text-gray-400 focus-within:text-gray-600"
     >
       <label htmlFor="search-field" className="sr-only">
         Search all songs

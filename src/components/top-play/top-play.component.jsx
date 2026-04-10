@@ -20,7 +20,7 @@ const TopPlay = () => {
   const divRef = useRef(null);
 
   const topPlays = topSongsData?.slice(0, 5);
-  const topArtists = topArtistsData?.slice(0, 5);
+  const topArtists = topArtistsData?.slice(0, 7);
 
   useEffect(() => {
     divRef.current.scrollIntoView({ behavior: 'smooth' });
@@ -41,8 +41,8 @@ const TopPlay = () => {
       className="xl:ml-4 ml-0 xl:mb-0 mb-6 flex-1 xl:max-w-[380px] max-w-full flex flex-col"
     >
       <div className="w-full flex flex-col">
-        <div className="flex flex-row justify-between items-center">
-          <h2 className="text-white font-bold text-base">Top Charts</h2>
+        <div className="flex flex-row justify-between items-center xl:mt-0 mt-1">
+          <h2 className="text-white font-bold xl:text-base md:text-xl text-lg">Top Charts</h2>
           <Link to="/top-charts">
             <p className="text-gray-300 text-xs cursor-pointer">See more</p>
           </Link>
@@ -64,8 +64,8 @@ const TopPlay = () => {
       </div>
 
       <div className="w-full flex flex-col mt-4">
-        <div className="flex flex-row justify-between items-center">
-          <h2 className="text-white font-bold text-base">Top Artists</h2>
+        <div className="flex flex-row justify-between items-center xl:my-0 my-2">
+          <h2 className="text-white font-bold xl:text-base md:text-xl text-lg">Top Artists</h2>
           <Link to="/top-artists">
             <p className="text-gray-300 text-xs cursor-pointer">See more</p>
           </Link>
@@ -78,7 +78,7 @@ const TopPlay = () => {
           centeredSlides
           centeredSlidesBounds
           modules={[FreeMode]}
-          className="mt-4"
+          className="mt-4 xl:w-auto w-[95%]"
         >
           {topArtists?.map((artist) => (
             <SwiperSlide

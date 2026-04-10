@@ -105,7 +105,7 @@ const MusicPlayer = () => {
         />
       </div>
 
-      <div className={`fixed top-[calc(112px-100vh)] inset-0 z-50 md:hidden bg-gradient-to-br from-black to-[#121286] flex flex-col items-center px-6 pt-4 pb-12 transition-transform duration-1000 ease-in-out ${isExpanded ? 'translate-y-0' : 'translate-y-full'}`}>
+      <div className={`absolute top-[calc(70px-100vh)] inset-0 z-50 md:hidden bg-gradient-to-br from-black to-[#121286] flex flex-col items-center px-6 pt-4 pb-12 transition-transform duration-1000 ease-in-out ${isExpanded ? 'translate-y-0' : 'translate-y-full'}`}>
         <button
           type="button"
           onClick={() => setIsExpanded(false)}
