@@ -7,6 +7,7 @@ const SongBar = ({ song, i, artistId, isPlaying, activeSong, handlePauseClick, h
     <h3 className="font-bold sm:text-sm text-xs text-white mr-2">{i + 1}.</h3>
     <div className="flex-1 flex flex-row justify-between items-center">
       <img
+        loading="lazy"
         className="sm:w-20 w-14 sm:h-20 h-14 rounded-lg"
         src={artistId ? song?.album?.cover : song?.album?.cover_medium}
         alt={artistId ? song?.artist?.name : song?.title}

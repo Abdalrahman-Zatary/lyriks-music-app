@@ -88,6 +88,7 @@ const TopPlay = () => {
             >
               <Link to={`/artists/${artist?.id}`}>
                 <img
+                  loading="lazy"
                   src={artist?.picture}
                   alt={artist?.name}
                   className="rounded-full w-full object-cover"

@@ -111,6 +111,7 @@ const MusicPlayer = () => {
         </button>
         <div className={`w-72 h-72 rounded-full border-4 border-white/20 shadow-2xl mb-12 ${isPlaying && isActive ? 'animate-[spin_8s_linear_infinite]' : ''}`}>
           <img
+            loading="lazy"
             src={activeSong?.album?.cover_medium}
             alt="cover art"
             className="w-full h-full rounded-full object-cover"

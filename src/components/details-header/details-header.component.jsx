@@ -5,6 +5,7 @@ const DetailsHeader = ({ artistId, songData, artistData, topAlbum }) => (
     <div className="w-full bg-gradient-to-l from-transparent to-black sm:h-48 h-40">
       <div className="absolute inset-0 flex items-center">
         <img
+          loading="lazy"
           alt="art"
           src={artistId ? artistData?.picture : songData?.album?.cover}
           className="sm:w-48 w-40 sm:h-48 h-40 rounded-full object-cover border-2 shadow-xl shadow-black"

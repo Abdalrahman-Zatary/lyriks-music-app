@@ -13,6 +13,7 @@ const TopChartCard = ({
     <h3 className="font-bold xl:text-xs text-sm text-white mr-2">{i + 1}.</h3>
     <div className="flex-1 flex flex-row justify-between items-center">
       <img
+        loading="lazy"
         src={song?.album?.cover_medium}
         className="xl:w-14 sm:w-20 w-14 xl:h-14 sm:h-20 h-14 rounded-md"
         alt={song?.title}

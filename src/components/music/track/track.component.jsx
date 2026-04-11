@@ -4,6 +4,7 @@ const Track = ({ isPlaying, isActive, activeSong, onExpand }) => (
       className={`${isPlaying && isActive ? 'animate-[spin_3s_linear_infinite]' : ''} hidden sm:block h-10 w-10 mr-4`}
     >
       <img
+        loading="lazy"
         src={activeSong?.album?.cover_small}
         alt="cover art"
         className="rounded-full"
