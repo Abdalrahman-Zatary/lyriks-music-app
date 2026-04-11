@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { links } from '../../assets/constants';
 
 const NavLinks = ({ handleClick }) => (
-  <div className="mt-8">
+  <div className="mt-3">
     {links.map((item) => (
       <NavLink
         key={item.name}
