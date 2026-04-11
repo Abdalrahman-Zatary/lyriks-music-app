@@ -1,4 +1,4 @@
-# 🎵 Melodiq — Music Streaming Web App
+# Melodiq 🎵 — Music Streaming Web App
 
 > A full-featured music streaming application built with React 18 and Redux Toolkit, powered entirely by free APIs with no credit card required.
 
@@ -18,7 +18,7 @@ Melodiq is a modern music streaming web app that lets you explore top charts, di
 
 ## Live Demo
 
-🔗 [melodiq.netlify.app](#) 
+[melodiq.netlify.app](# https://melodiq.netlify.app/) 
 
 ---
 
