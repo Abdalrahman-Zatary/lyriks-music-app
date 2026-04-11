@@ -5,7 +5,9 @@ const OFFSET = Math.floor(Math.random() * 100);
 export const deezerApi = createApi({
   reducerPath: 'deezerApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://corsproxy.io/?https://api.deezer.com',
+    baseUrl: import.meta.env.DEV
+      ? 'https://corsproxy.io/?https://api.deezer.com'
+      : '/api/deezer',
   }),
   endpoints: (builder) => ({
     getRandomTopTracks: builder.query({
