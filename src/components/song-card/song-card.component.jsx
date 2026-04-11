@@ -29,7 +29,7 @@ const SongCard = ({ song, isPlaying, activeSong, data, i }) => {
             handlePlay={handlePlayClick}
           />
         </div>
-        <img src={song?.album.cover_medium} alt="song_img" />
+        <img src={song?.album.cover_medium} alt={`${song?.title} - ${song?.artist?.name}`} />
       </div>
 
       <div className="mt-4 flex flex-col">
@@ -38,7 +38,7 @@ const SongCard = ({ song, isPlaying, activeSong, data, i }) => {
         </p>
         <p className="text-[9px] truncate text-gray-300 mt-0.5">
           <Link
-            to={song.artist ? `/artists/${song?.artist?.id}` : '/top-artist'}
+            to={song.artist ? `/artists/${song?.artist?.id}` : '/top-artists'}
           >
             {song?.artist?.name}
           </Link>

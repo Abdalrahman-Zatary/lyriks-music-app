@@ -54,7 +54,7 @@ const playerSlice = createSlice({
       state.isPlaying = action.payload;
     },
 
-    selectGenreListId: (state, action) => {
+    setGenreListId: (state, action) => {
       state.genreListId = action.payload;
       localStorage.setItem('genre', action.payload);
     },
@@ -66,7 +66,7 @@ export const {
   nextSong,
   prevSong,
   playPause,
-  selectGenreListId,
+  setGenreListId,
 } = playerSlice.actions;
 
 export default playerSlice.reducer;

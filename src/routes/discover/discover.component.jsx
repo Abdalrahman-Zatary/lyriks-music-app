@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { Error, Loader, SongCard } from '../../components/components';
 import { genres } from '../../assets/constants';
-import { selectGenreListId } from '../../redux/features/playerSlice';
+import { setGenreListId } from '../../redux/features/playerSlice';
 import { useGetTracksByGenreQuery } from '../../redux/services/deezerApi';
 
 const Discover = () => {
@@ -22,7 +22,7 @@ const Discover = () => {
           Discover {genreTitle || 'Soul'}
         </h2>
         <select
-          onChange={(e) => dispatch(selectGenreListId(e.target.value))}
+          onChange={(e) => dispatch(setGenreListId(e.target.value))}
           value={genreListId}
           className="bg-black text-gray-300 overflow-y-scroll hide-scrollbar p-2 text-xs rounded-md outline-none sm:mt-0 mt-5"
         >
@@ -31,7 +31,6 @@ const Discover = () => {
               {genre.title}
             </option>
           ))}
-          ;
         </select>
       </div>
       <div className="flex flex-wrap md:justify-start justify-center gap-4">

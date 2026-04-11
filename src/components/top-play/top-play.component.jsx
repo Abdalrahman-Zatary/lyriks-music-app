@@ -24,7 +24,7 @@ const TopPlay = () => {
 
   useEffect(() => {
     divRef.current.scrollIntoView({ behavior: 'smooth' });
-  });
+  }, []);
 
   const handlePauseClick = () => {
     dispatch(playPause(false));
@@ -89,7 +89,7 @@ const TopPlay = () => {
               <Link to={`/artists/${artist?.id}`}>
                 <img
                   src={artist?.picture}
-                  alt="name"
+                  alt={artist?.name}
                   className="rounded-full w-full object-cover"
                 />
               </Link>

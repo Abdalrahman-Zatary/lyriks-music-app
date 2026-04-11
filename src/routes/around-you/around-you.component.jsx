@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import axios from 'axios';
 
 import { SongCard, Error, Loader } from '../../components/components';
 import { useGetSongsByCountryQuery } from '../../redux/services/deezerApi';
@@ -16,11 +15,10 @@ const AroundYou = () => {
   useEffect(() => {
     const getCountry = async () => {
       try {
-        const res = await axios.get('https://ipapi.co/json/');
-        const countryCode = res.data.country_code;
-        setCountry(countryCode || 'SY');
+        const res = await fetch('https://ipapi.co/json/');
+        const dataLoceation = await res.json();
+        setCountry(dataLoceation.country_code || 'SY');
       } catch (err) {
-        console.log(err);
         setCountry('SY');
       } finally {
         setLoading(false);
