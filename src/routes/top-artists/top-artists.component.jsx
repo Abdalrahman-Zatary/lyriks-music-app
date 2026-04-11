@@ -1,7 +1,9 @@
+import usePageTitle from '../../hooks/usePageTitle';
 import { ArtistCard, Error, Loader } from '../../components/components';
 import { useGetTopArtistsQuery } from '../../redux/services/deezerApi';
 
 const TopArtists = () => {
+  usePageTitle('Top Artists');
   const { data, isFetching, error } = useGetTopArtistsQuery();
 
   if (isFetching) return <Loader title="Loading top artists" />;

@@ -1,5 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+
+import usePageTitle from '../../hooks/usePageTitle';
 import { DetailsHeader, Error, Loader, RelatedSongs } from '../../components/components';
 import { setActiveSong, playPause } from '../../redux/features/playerSlice';
 
@@ -10,12 +12,13 @@ const SongDetails = () => {
   const dispatch = useDispatch();
   const { songid } = useParams();
   const { activeSong, isPlaying } = useSelector((state) => state.player);
-
   const {
     data: songData,
     isFetching: isFetchingSongDetails,
     error: errorSong,
   } = useGetSongDetailsQuery({ songid });
+
+  usePageTitle(songData ? `${songData.title} — ${songData.artist?.name}` : 'Song Details');
 
   const {
     data,

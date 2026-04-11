@@ -1,5 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+
+import usePageTitle from '../../hooks/usePageTitle';
 import { DetailsHeader, Error, Loader, RelatedSongs } from '../../components/components';
 
 import {
@@ -21,6 +23,8 @@ const ArtistDetails = () => {
     isFetching: isFetchingRelatedSongs,
     error,
   } = useGetRelatedSongsQuery(artistId, { skip: !artistData });
+
+  usePageTitle(artistData ? artistData.name : 'Artist');
 
   if (isFetchingArtistDetails || isFetchingRelatedSongs) return <Loader title="Loading artist details" />;
   if (errorArtist || error) return <Error />;

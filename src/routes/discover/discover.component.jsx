@@ -1,11 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux';
 
+import usePageTitle from '../../hooks/usePageTitle';
 import { Error, Loader, SongCard } from '../../components/components';
 import { genres } from '../../assets/constants';
 import { setGenreListId } from '../../redux/features/playerSlice';
 import { useGetTracksByGenreQuery } from '../../redux/services/deezerApi';
 
 const Discover = () => {
+  usePageTitle('Discover Music');
   const dispatch = useDispatch();
   const { activeSong, isPlaying, genreListId } = useSelector((state) => state.player);
   const { data, isFetching, error } = useGetTracksByGenreQuery(genreListId);

@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
+import usePageTitle from '../../hooks/usePageTitle';
 import { SongCard, Error, Loader } from '../../components/components';
 import { useGetSongsByCountryQuery } from '../../redux/services/deezerApi';
 
 const AroundYou = () => {
+  usePageTitle('Around You');
   const [country, setCountry] = useState('');
   const [loading, setLoading] = useState(true);
   const { activeSong, isPlaying } = useSelector((state) => state.player);

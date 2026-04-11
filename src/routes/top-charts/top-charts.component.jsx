@@ -1,9 +1,11 @@
 import { useSelector } from 'react-redux';
 
+import usePageTitle from '../../hooks/usePageTitle';
 import { SongCard, Error, Loader } from '../../components/components';
 import { useGetRandomTopTracksQuery } from '../../redux/services/deezerApi';
 
 const TopCharts = () => {
+  usePageTitle('Top Charts');
   const { activeSong, isPlaying } = useSelector((state) => state.player);
   const { data, isFetching, error } = useGetRandomTopTracksQuery();
 

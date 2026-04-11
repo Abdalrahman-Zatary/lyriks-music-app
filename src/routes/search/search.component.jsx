@@ -1,11 +1,13 @@
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
+import usePageTitle from '../../hooks/usePageTitle';
 import { SongCard, Error, Loader } from '../../components/components';
 import { useGetSearchTracksQuery } from '../../redux/services/deezerApi';
 
 const Search = () => {
   const { searchTerm } = useParams();
+  usePageTitle(`Search: ${searchTerm}`);
   const { activeSong, isPlaying } = useSelector((state) => state.player);
   const { data, isFetching, error } = useGetSearchTracksQuery(searchTerm);
 
