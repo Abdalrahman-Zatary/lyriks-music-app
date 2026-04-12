@@ -9,8 +9,7 @@ const Searchbar = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    if (!searchTerm.trim()) return;
+    e.target.querySelector('input')?.blur();
 
     navigate(`/search/${searchTerm}`);
   };

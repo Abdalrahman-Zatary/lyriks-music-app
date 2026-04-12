@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux';
+import { useEffect, useRef } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 
 import { Searchbar, Sidebar, TopPlay } from './components/components';
@@ -7,8 +8,13 @@ import { ArtistDetails, TopArtists, AroundYou, Discover, Search, SongDetails, To
 const App = () => {
   const { activeSong } = useSelector((state) => state.player);
   const { pathname } = useLocation();
+  const appRef = useRef(null);
 
   const isSearchPage = pathname.startsWith('/search');
+
+  useEffect(() => {
+    appRef.current?.scrollIntoView({ behavior: 'smooth' });
+  });
 
   return (
     <div className="relative flex">
@@ -28,7 +34,10 @@ const App = () => {
               <Route path="/search/:searchTerm" element={<Search />} />
             </Routes>
           </div>
-          <div className={`xl:sticky relative top-0 h-fit ${isSearchPage ? 'hidden xl:block' : 'animate-slideup'}`}>
+          <div ref={appRef} className="relative inset-0" />
+          <div
+            className={`xl:sticky relative top-0 h-fit ${isSearchPage ? 'hidden' : ''}`}
+          >
             <TopPlay />
           </div>
         </div>
