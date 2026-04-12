@@ -1,11 +1,14 @@
 import { useSelector } from 'react-redux';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 
 import { Searchbar, Sidebar, TopPlay } from './components/components';
 import { ArtistDetails, TopArtists, AroundYou, Discover, Search, SongDetails, TopCharts, MusicPlayer } from './routes/routes';
 
 const App = () => {
   const { activeSong } = useSelector((state) => state.player);
+  const { pathname } = useLocation();
+
+  const isSearchPage = pathname.startsWith('/search');
 
   return (
     <div className="relative flex">
@@ -25,7 +28,7 @@ const App = () => {
               <Route path="/search/:searchTerm" element={<Search />} />
             </Routes>
           </div>
-          <div className="xl:sticky relative top-0 h-fit">
+          <div className={`xl:sticky relative top-0 h-fit ${isSearchPage ? 'hidden xl:block' : 'animate-slideup'}`}>
             <TopPlay />
           </div>
         </div>
