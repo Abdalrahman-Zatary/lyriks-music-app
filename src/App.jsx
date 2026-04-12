@@ -2,8 +2,22 @@ import { useSelector } from 'react-redux';
 import { useEffect, useRef } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 
-import { Searchbar, Sidebar, TopPlay } from './components/components';
-import { ArtistDetails, TopArtists, AroundYou, Discover, Search, SongDetails, TopCharts, MusicPlayer } from './routes/routes';
+import {
+  Searchbar,
+  Sidebar,
+  TopPlay,
+  AnimatedBackground,
+} from './components/components';
+import {
+  ArtistDetails,
+  TopArtists,
+  AroundYou,
+  Discover,
+  Search,
+  SongDetails,
+  TopCharts,
+  MusicPlayer,
+} from './routes/routes';
 
 const App = () => {
   const { activeSong } = useSelector((state) => state.player);
@@ -18,8 +32,9 @@ const App = () => {
 
   return (
     <div className="relative flex">
+      <AnimatedBackground coverImage={activeSong?.album?.cover_medium} />
       <Sidebar />
-      <div className="flex-1 flex flex-col bg-gradient-to-br from-black to-[#121286]">
+      <div className="flex-1 flex flex-col bg-gradient-to-br">
         <Searchbar />
 
         <div className="px-4 xl:h-[calc(100vh-2rem)] h-[calc(100vh-3rem)] overflow-y-scroll hide-scrollbar flex xl:flex-row flex-col-reverse">

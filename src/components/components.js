@@ -14,6 +14,7 @@ import SongBar from './songbar/songbar.component';
 import RelatedSongs from './related-songs/related-songs.component';
 import Loader from './loader/loader.component';
 import Error from './error/error.component';
+import AnimatedBackground from './animated-background/animated-background.component';
 
 export {
   TopPlay,
@@ -31,4 +32,5 @@ export {
   Seekbar,
   Track,
   VolumeBar,
+  AnimatedBackground,
 };
