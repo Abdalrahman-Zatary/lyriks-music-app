@@ -18,7 +18,7 @@ const Seekbar = ({ value, min, max, onInput, setSeekTime, appTime, isExpanded })
         min={min}
         max={max}
         onInput={onInput}
-        className={`${isExpanded ? 'w-full' : 'w-24'} md:block range md:w-72 h-[3px] mx-3 rounded-md accent-blue-500`}
+        className={`${isExpanded ? 'w-full' : 'w-24'} md:block range md:w-72 h-[3px] mx-3 rounded-md accent-white`}
       />
       <p className="text-white text-[11px]">{max === 0 ? '0:00' : getTime(max)}</p>
       <button
