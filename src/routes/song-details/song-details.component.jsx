@@ -51,11 +51,11 @@ const SongDetails = () => {
         <h2 className="text-white text-2xl font-bold">Lyrics:</h2>
         <div className="mt-5">
           {lyricsData?.lyrics ? (
-            <p className="text-gray-400 md:text-base text-sm my-1 whitespace-pre-line">
+            <p className="text-white md:text-base text-sm my-1 whitespace-pre-line">
               {lyricsData.lyrics}
             </p>
           ) : (
-            <p className="text-gray-400 md:text-base text-sm my-1">
+            <p className="text-white md:text-base text-sm my-1">
               Sorry, no lyrics found!
             </p>
           )}

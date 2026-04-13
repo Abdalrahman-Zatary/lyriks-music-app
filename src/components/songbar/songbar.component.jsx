@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import PlayPause from '../play-pause/play-pause.component';
 
 const SongBar = ({ song, i, artistId, isPlaying, activeSong, handlePauseClick, handlePlayClick }) => (
-  <div className={`w-full flex flex-row items-center hover:bg-[#4c426e] ${artistId ? 'bg-[#4c426e]' : ''} ${isPlaying && activeSong?.id === song?.id ? 'bg-[#4c426e]' : 'bg-transparent'} py-2 p-3 rounded-lg cursor-pointer sm:mb-2 mb-1`}>
+  <div className={`w-full flex flex-row items-center hover:bg-gradient-to-t from-white/30 to-[#191624]/50 ${artistId ? 'bg-gradient-to-t from-white/30 to-[#191624]/50' : ''} ${isPlaying && activeSong?.id === song?.id ? 'bg-gradient-to-t from-white/30 to-[#191624]/50' : 'bg-transparent'} py-2 p-6 rounded-lg cursor-pointer sm:mb-2 mb-1`}>
     <h3 className="font-bold sm:text-sm text-xs text-white mr-2">{i + 1}.</h3>
     <div className="flex-1 flex flex-row justify-between items-center">
       <img
@@ -18,7 +18,7 @@ const SongBar = ({ song, i, artistId, isPlaying, activeSong, handlePauseClick, h
             {song?.title}
           </p>
         </Link>
-        <p className="text-xs text-gray-300 mt-1">
+        <p className="md:text-sm text-xs text-gray-300 mt-1">
           {song?.album?.title}
         </p>
       </div>
