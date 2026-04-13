@@ -9,7 +9,7 @@ const TopChartCard = ({
   handlePlayClick,
   i,
 }) => (
-  <div className={`w-full flex flex-row items-center ${isPlaying && activeSong?.id === song?.id ? 'bg-[#4c426e]' : ''} hover:bg-[#4c426e] py-2 xl:px-1 px-3 rounded-lg cursor-pointer mb-2"`}>
+  <div className={`w-full flex flex-row items-center ${isPlaying && activeSong?.id === song?.id ? 'bg-gradient-to-t from-white/30 to-[#191624]/50' : ''} hover:bg-gradient-to-t from-white/30 to-[#191624]/50 py-2 px-3 rounded-lg cursor-pointer mb-2"`}>
     <h3 className="font-bold xl:text-xs text-sm text-white mr-2">{i + 1}.</h3>
     <div className="flex-1 flex flex-row justify-between items-center">
       <img
