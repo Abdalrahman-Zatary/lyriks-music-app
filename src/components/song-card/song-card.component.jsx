@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -6,6 +7,7 @@ import { playPause, setActiveSong } from '../../redux/features/playerSlice';
 
 const SongCard = ({ song, isPlaying, activeSong, data, i }) => {
   const dispatch = useDispatch();
+  const [isHoverSong, setIsHoverSong] = useState(false);
 
   const handlePauseClick = () => {
     dispatch(playPause(false));
@@ -16,20 +18,30 @@ const SongCard = ({ song, isPlaying, activeSong, data, i }) => {
   };
 
   return (
-    <div className="flex flex-col w-[157px] p-2 bg-gradient-to-tl from-white/40 to-[#191624]/50 backdrop-blur-sm animate-slideup rounded-md cursor-pointer">
+    <div
+      onMouseEnter={() => setIsHoverSong(true)}
+      onMouseLeave={() => setIsHoverSong(false)}
+      className="flex flex-col w-[157px] p-2 bg-gradient-to-tl from-white/40 to-[#191624]/50 backdrop-blur-sm animate-slideup rounded-md cursor-pointer hover:"
+    >
       <div className="relative w-full h-[135px] group">
         <div
-          className={`absolute inset-0 bottom-[-6px] justify-center items-center bg-black bg-opacity-50 group-hover:flex ${isPlaying && activeSong?.id === song?.id ? 'flex bg-black bg-opacity-70' : 'hidden'}`}
+          className={`absolute inset-0 bottom-[-6px] justify-center items-center bg-black bg-opacity-50 group-hover:flex duration-300 ${isHoverSong || (isPlaying && activeSong?.id === song?.id) ? 'flex' : 'opacity-0'}`}
         >
           <PlayPause
             isPlaying={isPlaying}
             activeSong={activeSong}
             song={song}
+            isHoverSong={isHoverSong}
             handlePause={handlePauseClick}
             handlePlay={handlePlayClick}
+            sizeIcon={40}
           />
         </div>
-        <img loading="lazy" src={song?.album.cover_medium} alt={`${song?.title} - ${song?.artist?.name}`} />
+        <img
+          loading="lazy"
+          src={song?.album.cover_medium}
+          alt={`${song?.title} - ${song?.artist?.name}`}
+        />
       </div>
 
       <div className="mt-4 flex flex-col">
