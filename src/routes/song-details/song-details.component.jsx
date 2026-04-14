@@ -45,7 +45,7 @@ const SongDetails = () => {
   if (error || errorSong) return <Error />;
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-8 sm:text-start text-center">
       <DetailsHeader artistId="" songData={songData} />
       <div className="mb-10">
         <h2 className="text-white text-2xl font-bold">Lyrics:</h2>

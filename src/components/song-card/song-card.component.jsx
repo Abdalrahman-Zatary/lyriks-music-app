@@ -21,7 +21,7 @@ const SongCard = ({ song, isPlaying, activeSong, data, i }) => {
     <div
       onMouseEnter={() => setIsHoverSong(true)}
       onMouseLeave={() => setIsHoverSong(false)}
-      className="flex flex-col w-[157px] p-2 bg-gradient-to-tl from-white/40 to-[#191624]/50 backdrop-blur-sm animate-slideup rounded-md cursor-pointer hover:"
+      className="flex flex-col w-[157px] p-2 bg-gradient-to-tl from-white/40 to-[#191624]/50 backdrop-blur-sm animate-slideup rounded-md cursor-pointer"
     >
       <div className="relative w-full h-[135px] group">
         <div
