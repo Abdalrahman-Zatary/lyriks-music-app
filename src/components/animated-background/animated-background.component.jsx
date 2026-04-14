@@ -1,10 +1,12 @@
+import logo from '../../assets/logo.svg';
+
 const AnimatedBackground = ({ coverImage }) => (
   <div
-    className="fixed inset-0 -z-10 transition-all duration-1000 w-[100dvw] h-[100dvvh]"
+    className="fixed inset-0 z-0 transition-all duration-1000 w-[100dvw] h-[100dvh]"
     style={{
       backgroundImage: coverImage
         ? `url(${coverImage})`
-        : 'url(../../../public/wallpapersden.com_satoru-gojo-2023-digital-jujutsu-kaisen-art_3840x2400.jpg)',
+        : `url(${logo})`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       filter: 'blur(15px) brightness(0.6) saturate(1.5) contrast(1.1)',

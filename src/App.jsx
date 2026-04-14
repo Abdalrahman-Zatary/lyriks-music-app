@@ -31,13 +31,13 @@ const App = () => {
   });
 
   return (
-    <div className="relative flex">
+    <div className="relative flex bg-[#191624]">
       <AnimatedBackground coverImage={activeSong?.album?.cover_medium} />
       <Sidebar />
       <div className="flex-1 flex flex-col bg-gradient-to-br">
         <Searchbar />
 
-        <div className="px-4 xl:h-[calc(100vh-2rem)] h-[calc(100vh-3rem)] overflow-y-scroll hide-scrollbar flex xl:flex-row flex-col-reverse">
+        <div className="px-4 xl:h-[calc(100vh-2.5rem)] h-[calc(100vh-3rem)] overflow-y-scroll hide-scrollbar flex xl:flex-row flex-col-reverse">
           <div className="flex-1 h-fit pb-40">
             <Routes>
               <Route path="/" element={<Discover />} />
@@ -51,7 +51,7 @@ const App = () => {
           </div>
           <div ref={appRef} className="relative inset-0" />
           <div
-            className={`xl:sticky relative top-0 h-fit ${isSearchPage ? 'hidden' : ''}`}
+            className={`xl:sticky relative top-0 h-fit ${isSearchPage ? 'xl:block hidden' : ''}`}
           >
             <TopPlay />
           </div>
