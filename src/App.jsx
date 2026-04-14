@@ -22,7 +22,7 @@ const App = () => {
   const { activeSong } = useSelector((state) => state.player);
   const { pathname } = useLocation();
 
-  const isSearchPage = pathname.startsWith('/search');
+  const hideTopPlay = pathname.startsWith('/search') || pathname.startsWith('/songs') || pathname.startsWith('/artists');
 
   return (
     <div className="relative flex bg-black z-10">
@@ -43,11 +43,11 @@ const App = () => {
               <Route path="/search/:searchTerm" element={<Search />} />
             </Routes>
           </div>
-          <div
-            className={`xl:sticky relative top-0 h-fit ${isSearchPage ? 'xl:block hidden' : ''}`}
-          >
-            <TopPlay />
-          </div>
+          {!hideTopPlay && (
+            <div className="xl:sticky relative top-0 h-fit">
+              <TopPlay />
+            </div>
+          )}
         </div>
       </div>
 
