@@ -20,6 +20,17 @@ const Search = () => {
   if (isFetching) return <Loader title={`Searching for "${searchTerm}"`} />;
   if (error) return <Error />;
 
+  if (!data?.length) {
+    return (
+      <div className="flex flex-col items-center justify-center mt-20 animate-bounce [animation-duration:2s]">
+        <p className="text-white text-xl font-bold text-center">
+          No results foound: <br />
+          <span className="text-base text-gray-300">&quot;{searchTerm}&quot;</span>
+        </p>
+      </div>
+    );
+  }
+
   return (
     <div
       ref={searchRef}

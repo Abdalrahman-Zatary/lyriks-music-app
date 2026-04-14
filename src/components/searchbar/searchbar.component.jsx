@@ -20,7 +20,7 @@ const Searchbar = () => {
   };
 
   return (
-    <div className="xl:h-10 h-12 relative w-full flex justify-between items-center md:px-4 px-8">
+    <div className="xl:h-10 h-12 relative w-full flex justify-between items-center md:px-4 sm:px-8 px-2">
       <form
         onSubmit={handleSubmit}
         autoCapitalize="off"
