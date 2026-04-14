@@ -111,9 +111,8 @@ const MusicPlayer = () => {
         >
           <RiArrowDownSLine size={38} />
         </button>
-        <div className={`w-72 h-72 rounded-full mb-12 ${isPlaying && isActive ? 'animate-[spin_8s_linear_infinite]' : ''}`}>
+        <div className={`relative w-72 h-72 rounded-full mb-12 ${isPlaying && isActive ? 'animate-[spin_8s_linear_infinite]' : ''}`}>
           <img
-            loading="lazy"
             src={disc}
             className="absolute w-full h-full object-cover"
           />
