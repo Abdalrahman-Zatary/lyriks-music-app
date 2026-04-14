@@ -13,6 +13,7 @@ module.exports = {
         slideright: 'slideright 1s ease-in-out',
         wave: 'wave 1.2s linear infinite',
         slowfade: 'slowfade 2.2s ease-in-out',
+        marquee: 'marquee 10s linear infinite',
       },
       keyframes: {
         slowfade: {
@@ -39,6 +40,10 @@ module.exports = {
           '0%': { transform: 'scale(0)' },
           '50%': { transform: 'scale(1)' },
           '100%': { transform: 'scale(0)' },
+        },
+        marquee: {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-50%)' },
         },
       },
     },
