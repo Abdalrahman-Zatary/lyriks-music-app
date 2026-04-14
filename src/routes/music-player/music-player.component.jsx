@@ -3,7 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RiArrowDownSLine } from 'react-icons/ri';
 
 import { nextSong, prevSong, playPause } from '../../redux/features/playerSlice';
-import { Controls, Player, Seekbar, Track, VolumeBar } from '../../components/components';
+import { Controls, Player, Seekbar, Track, VolumeBar, AnimatedBackground } from '../../components/components';
+import disc from '../../assets/disco-icon.png';
 
 const MusicPlayer = () => {
   const { activeSong, currentSongs, currentIndex, isActive, isPlaying } = useSelector((state) => state.player);
@@ -101,7 +102,8 @@ const MusicPlayer = () => {
         />
       </div>
 
-      <div className={`absolute overflow-y-scroll hide-scrollbar top-[calc(70px-100vh)] inset-0 z-50 md:hidden bg-gradient-to-br from-black to-[#121286] flex flex-col justify-center items-center px-6 pt-12 pb-12 transition-transform duration-1000 ease-in-out ${isExpanded ? 'translate-y-0' : 'translate-y-full'}`}>
+      <div className={`absolute overflow-y-scroll hide-scrollbar top-[calc(70px-100vh)] inset-0 z-50 md:hidden bg-black flex flex-col justify-center items-center px-6 pt-12 pb-12 transition-transform duration-1000 ease-in-out ${isExpanded ? 'translate-y-0' : 'translate-y-full'}`}>
+        <AnimatedBackground coverImage={activeSong?.album?.cover_medium} />
         <button
           type="button"
           onClick={() => setIsExpanded(false)}
@@ -109,12 +111,17 @@ const MusicPlayer = () => {
         >
           <RiArrowDownSLine size={38} />
         </button>
-        <div className={`w-72 h-72 rounded-full border-4 border-white/20 shadow-2xl mb-12 ${isPlaying && isActive ? 'animate-[spin_8s_linear_infinite]' : ''}`}>
+        <div className={`w-72 h-72 rounded-full mb-12 ${isPlaying && isActive ? 'animate-[spin_8s_linear_infinite]' : ''}`}>
+          <img
+            loading="lazy"
+            src={disc}
+            className="absolute w-full h-full object-cover"
+          />
           <img
             loading="lazy"
             src={activeSong?.album?.cover_medium}
             alt="cover art"
-            className="w-full h-full rounded-full object-cover"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1/3 h-1/3 rounded-full object-cover"
           />
         </div>
         <div className="w-full text-center mb-12">
