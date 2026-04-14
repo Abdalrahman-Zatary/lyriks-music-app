@@ -1,5 +1,4 @@
 import { useSelector } from 'react-redux';
-import { useEffect, useRef } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 
 import {
@@ -22,22 +21,17 @@ import {
 const App = () => {
   const { activeSong } = useSelector((state) => state.player);
   const { pathname } = useLocation();
-  const appRef = useRef(null);
 
   const isSearchPage = pathname.startsWith('/search');
 
-  useEffect(() => {
-    appRef.current?.scrollIntoView({ behavior: 'smooth' });
-  });
-
   return (
-    <div className="relative flex bg-[#191624]">
+    <div className="relative flex bg-black z-10">
       <AnimatedBackground coverImage={activeSong?.album?.cover_medium} />
       <Sidebar />
       <div className="flex-1 flex flex-col bg-gradient-to-br">
         <Searchbar />
 
-        <div className="px-4 xl:h-[calc(100vh-2.5rem)] h-[calc(100vh-3rem)] overflow-y-scroll hide-scrollbar flex xl:flex-row flex-col-reverse">
+        <div className="sm:px-4 px-1 xl:h-[calc(100vh-2.5rem)] h-[calc(100vh-3rem)] overflow-y-scroll hide-scrollbar flex xl:flex-row flex-col-reverse">
           <div className="flex-1 h-fit pb-40">
             <Routes>
               <Route path="/" element={<Discover />} />
@@ -49,7 +43,6 @@ const App = () => {
               <Route path="/search/:searchTerm" element={<Search />} />
             </Routes>
           </div>
-          <div ref={appRef} className="relative inset-0" />
           <div
             className={`xl:sticky relative top-0 h-fit ${isSearchPage ? 'xl:block hidden' : ''}`}
           >
