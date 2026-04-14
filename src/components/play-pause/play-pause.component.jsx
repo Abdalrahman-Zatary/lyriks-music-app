@@ -22,7 +22,7 @@ const PlayPause = ({
           loop
           autoplay
           style={{ width: `${sizeIcon}px`, height: `${sizeIcon}px` }}
-          className="rounded-full bg-gray-300"
+          className="rounded-full opacity-90 bg-gray-300"
         />
       </div>
     );
