@@ -1,7 +1,7 @@
 import MarqueeText from '../../marquee-text/marquee-text.component';
 
 const Track = ({ isPlaying, isActive, activeSong, onExpand }) => (
-  <div className="flex-1 flex items-center justify-start md:cursor-default cursor-pointer" onClick={onExpand}>
+  <div className="flex-1 flex items-center justify-start cursor-pointer" onClick={onExpand}>
     <div
       className={`${isPlaying && isActive ? 'animate-[spin_3s_linear_infinite]' : ''} hidden sm:block h-10 w-10 sm:mr-2 mr-4`}
     >

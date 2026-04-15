@@ -1,12 +1,15 @@
-const Seekbar = ({ value, min, max, onInput, setSeekTime, appTime, isExpanded }) => {
+import { useSelector } from 'react-redux';
+
+const Seekbar = ({ value, min, max, onInput, setSeekTime, appTime }) => {
   const getTime = (time) => `${Math.floor(time / 60)}:${(`0${Math.floor(time % 60)}`).slice(-2)}`;
+  const { isExpanded } = useSelector((state) => state.player);
 
   return (
     <div className={`${isExpanded ? 'flex' : 'hidden'} sm:flex flex-row items-center`}>
       <button
         type="button"
         onClick={() => setSeekTime(appTime - 5)}
-        className={`${isExpanded ? 'block mr-4' : 'hidden'} lg:mr-2 text-sm lg:block text-white`}
+        className={`${isExpanded ? 'block lg:mr-4 mr-2' : 'hidden'} lg:mr-2 text-sm lg:block text-white`}
       >
         -
       </button>
@@ -24,7 +27,7 @@ const Seekbar = ({ value, min, max, onInput, setSeekTime, appTime, isExpanded })
       <button
         type="button"
         onClick={() => setSeekTime(appTime + 5)}
-        className={`${isExpanded ? 'block ml-4' : 'hidden'} lg:ml-2 text-sm lg:block text-white`}
+        className={`${isExpanded ? 'block lg:ml-4 ml-2' : 'hidden'} lg:ml-2 text-sm lg:block text-white`}
       >
         +
       </button>
