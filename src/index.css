@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Prevent double-tap & pinch zoom on touch devices */
+html {
+  touch-action: manipulation;
+}
+
 /* Active Navigation Link */
 .active {
   @apply text-cyan-500;
