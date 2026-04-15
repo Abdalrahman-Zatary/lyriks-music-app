@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { Route, Routes, useLocation } from 'react-router-dom';
 
@@ -17,10 +18,14 @@ import {
   TopCharts,
   MusicPlayer,
 } from './routes/routes';
+import useScrollToTop from './hooks/useScrollToTop';
 
 const App = () => {
   const { activeSong } = useSelector((state) => state.player);
   const { pathname } = useLocation();
+
+  const scrollContainerRef = useRef(null);
+  useScrollToTop(scrollContainerRef);
 
   const hideTopPlay = pathname.startsWith('/search') || pathname.startsWith('/songs') || pathname.startsWith('/artists');
 
@@ -31,8 +36,8 @@ const App = () => {
       <div className="flex-1 flex flex-col bg-gradient-to-br">
         <Searchbar />
 
-        <div className="sm:px-4 px-1 xl:h-[calc(100vh-2.5rem)] h-[calc(100vh-3rem)] overflow-y-scroll hide-scrollbar flex xl:flex-row flex-col-reverse">
-          <div className="flex-1 h-fit pb-40">
+        <div ref={scrollContainerRef} className="sm:px-4 px-1 xl:h-[calc(100vh-2.5rem)] h-[calc(100vh-3rem)] overflow-y-scroll hide-scrollbar flex xl:flex-row flex-col">
+          <div className="flex-1 h-fit pb-40 order-last xl:order-none">
             <Routes>
               <Route path="/" element={<Discover />} />
               <Route path="/top-artists" element={<TopArtists />} />
@@ -44,14 +49,13 @@ const App = () => {
             </Routes>
           </div>
           {!hideTopPlay && (
-            <div className="xl:sticky relative top-0 h-fit">
+            <div className="xl:sticky relative top-0 h-fit order-first xl:order-none">
               <TopPlay />
             </div>
           )}
         </div>
       </div>
 
-      {/* animate-slideup bg-gradient-to-b from-white/30 to-[#191624]/10 backdrop-blur-lg rounded-t-2xl z-10 */}
       {activeSong?.title && (
         <div className="fixed inset-x-0 animate-slideup bottom-0 flex flex-col z-30">
           <MusicPlayer />
