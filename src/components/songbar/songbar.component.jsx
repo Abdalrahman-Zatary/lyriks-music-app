@@ -4,8 +4,25 @@ import { useState } from 'react';
 import PlayPause from '../play-pause/play-pause.component';
 import MarqueeText from '../marquee-text/marquee-text.component';
 
-const SongBar = ({ song, i, artistId, isPlaying, activeSong, handlePauseClick, handlePlayClick }) => {
+const SongBar = ({
+  song,
+  i,
+  artistId,
+  isPlaying,
+  activeSong,
+  handlePauseClick,
+  handlePlayClick,
+  noLink = false,
+}) => {
   const [isHoverSong, setisHoverSong] = useState(false);
+
+  const titleContent = (
+    <MarqueeText
+      text={song?.title}
+      className="md:text-lg sm:text-base text-sm font-bold text-white"
+      containerClass="lg:w-[400px] md:w-[350px] sm:w-[375px] w-[175px]"
+    />
+  );
 
   return (
     <div
@@ -21,14 +38,8 @@ const SongBar = ({ song, i, artistId, isPlaying, activeSong, handlePauseClick, h
           src={artistId ? song?.album?.cover : song?.album?.cover_medium}
           alt={artistId ? song?.artist?.name : song?.title}
         />
-        <div className="flex-1 flex flex-col justify-center overflow-hidden mx-4">
-          <Link to={`/songs/${song.id}`}>
-            <MarqueeText
-              text={song?.title}
-              className="md:text-lg sm:text-base text-sm font-bold text-white"
-              containerClass="lg:w-[400px] md:w-[350px] sm:w-[375px] w-[175px]"
-            />
-          </Link>
+        <div className="flex-1 flex flex-col justify-center overflow-hidden sm:mx-4 mx-2">
+          { noLink ? titleContent : <Link to={`/songs/${song.id}`}>{titleContent}</Link> }
           <MarqueeText
             text={song?.album?.title}
             className="md:text-sm text-xs text-gray-300 mt-1"
@@ -36,20 +47,18 @@ const SongBar = ({ song, i, artistId, isPlaying, activeSong, handlePauseClick, h
           />
         </div>
       </div>
-      {!artistId
-        ? (
-          <PlayPause
-            isPlaying={isPlaying}
-            activeSong={activeSong}
-            song={song}
-            isHoverSong={isHoverSong}
-            showDefaultPlay
-            sizeIcon={30}
-            handlePause={handlePauseClick}
-            handlePlay={() => handlePlayClick(song, i)}
-          />
-        )
-        : null}
+      {!artistId ? (
+        <PlayPause
+          isPlaying={isPlaying}
+          activeSong={activeSong}
+          song={song}
+          isHoverSong={isHoverSong}
+          showDefaultPlay
+          sizeIcon={30}
+          handlePause={handlePauseClick}
+          handlePlay={() => handlePlayClick(song, i)}
+        />
+      ) : null}
     </div>
   );
 };
