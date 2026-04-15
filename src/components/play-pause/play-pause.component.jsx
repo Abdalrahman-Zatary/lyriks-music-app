@@ -16,23 +16,35 @@ const PlayPause = ({
 }) => {
   const isActive = isPlaying && activeSong?.title === song?.title;
 
-  const shouldShow = isHoverSong || isTouchDevice;
+  if (isActive) {
+    if (isTouchDevice) {
+      return (
+        <div className="animate-slidedown [animation-duration:0.5s]">
+          <Lottie
+            animationData={musicSond}
+            loop
+            autoplay
+            style={{ width: `${sizeIcon}px`, height: `${sizeIcon}px` }}
+            className="rounded-full opacity-90 bg-gray-300"
+          />
+        </div>
+      );
+    }
 
-  if (isActive && !shouldShow) {
-    return (
-      <div className="animate-slidedown [animation-duration:0.5s]">
-        <Lottie
-          animationData={musicSond}
-          loop
-          autoplay
-          style={{ width: `${sizeIcon}px`, height: `${sizeIcon}px` }}
-          className="rounded-full opacity-90 bg-gray-300"
-        />
-      </div>
-    );
-  }
+    if (!isHoverSong) {
+      return (
+        <div className="animate-slidedown [animation-duration:0.5s]">
+          <Lottie
+            animationData={musicSond}
+            loop
+            autoplay
+            style={{ width: `${sizeIcon}px`, height: `${sizeIcon}px` }}
+            className="rounded-full opacity-90 bg-gray-300"
+          />
+        </div>
+      );
+    }
 
-  if (isActive && shouldShow) {
     return (
       <div className="animate-slideup [animation-duration:0.5s]">
         <FaPauseCircle
@@ -44,19 +56,9 @@ const PlayPause = ({
     );
   }
 
-  if (!isActive && shouldShow) {
-    return (
-      <div className="animate-slideright [animation-duration:0.5s]">
-        <FaPlayCircle
-          size={sizeIcon}
-          className="text-gray-300 cursor-pointer hover:scale-[1.15] transition-transform duration-300"
-          onClick={handlePlay}
-        />
-      </div>
-    );
-  }
+  const shouldShowPlay = isHoverSong || isTouchDevice || showDefaultPlay;
 
-  if (!isActive && !shouldShow && showDefaultPlay) {
+  if (shouldShowPlay) {
     return (
       <div className="animate-slideright [animation-duration:0.5s]">
         <FaPlayCircle
