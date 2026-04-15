@@ -1,15 +1,17 @@
 import { useRef, useEffect, useState } from 'react';
 
 const MarqueeText = ({ text, className = '', containerClass = '' }) => {
+  const containerRef = useRef(null);
   const measureRef = useRef(null);
   const [isOverflow, setIsOverflow] = useState(false);
 
   useEffect(() => {
+    const container = containerRef.current;
     const el = measureRef.current;
-    if (!el) return;
+    if (!el || !container) return;
 
     const check = () => {
-      setIsOverflow(el.scrollWidth > el.parentElement?.clientWidth);
+      setIsOverflow(el.scrollWidth > container.clientWidth);
     };
 
     check();
@@ -19,7 +21,15 @@ const MarqueeText = ({ text, className = '', containerClass = '' }) => {
   }, [text]);
 
   return (
-    <div className={`overflow-hidden ${containerClass}`}>
+    <div ref={containerRef} className={`overflow-hidden relative ${containerClass}`}>
+      <span
+        ref={measureRef}
+        aria-hidden="true"
+        className={`absolute invisible whitespace-nowrap pointer-events-none ${className}`}
+      >
+        {text}
+      </span>
+
       {isOverflow ? (
         <div
           className="flex whitespace-nowrap animate-marquee hover:[animation-play-state:paused]"
@@ -29,10 +39,7 @@ const MarqueeText = ({ text, className = '', containerClass = '' }) => {
           <span className={`shrink-0 pl-16 ${className}`}>{text}</span>
         </div>
       ) : (
-        <span
-          ref={measureRef}
-          className={`block whitespace-nowrap ${className}`}
-        >
+        <span className={`block whitespace-nowrap ${className}`}>
           {text}
         </span>
       )}
