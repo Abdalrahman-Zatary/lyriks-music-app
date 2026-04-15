@@ -28,7 +28,7 @@ const SongBar = ({
     <div
       onMouseEnter={() => setisHoverSong(true)}
       onMouseLeave={() => setisHoverSong(false)}
-      className={`w-full flex flex-row items-center hover:bg-gradient-to-t from-white/30 to-[#191624]/50 py-2 xl:pr-6 sm:p-3 p-0 rounded-lg sm:mb-2 mb-1 ${artistId ? 'bg-gradient-to-t from-white/30 to-[#191624]/50' : 'bg-transparent'} ${isPlaying && activeSong?.id === song?.id ? 'bg-gradient-to-t from-white/30 to-[#191624]/50' : 'bg-transparent'}`}
+      className={`w-full flex flex-row items-center hover:bg-gradient-to-t from-white/30 to-[#191624]/50 py-2 xl:pr-6 sm:p-3 p-2 rounded-lg sm:mb-2 mb-1 ${artistId ? 'bg-gradient-to-t from-white/30 to-[#191624]/50' : 'bg-transparent'} ${isPlaying && activeSong?.id === song?.id ? 'bg-gradient-to-t from-white/30 to-[#191624]/50' : 'bg-transparent'}`}
     >
       <h3 className="font-bold sm:text-sm text-xs text-white mr-2">{i + 1}.</h3>
       <div className="flex-1 flex flex-row justify-between items-center">

@@ -117,12 +117,12 @@ const MusicPlayer = () => {
         />
       </div>
 
-      <div className={`${isExpanded ? 'lg:h-fit max-h-screen opacity-100 translate-y-0' : 'max-h-0 opacity-0 translate-y-6 pointer-events-none py-0'}  overflow-y-auto hide-scrollbar transition-all duration-1000 ease-in-out flex lg:flex-row flex-col lg:items-start items-center lg:justify-between justify-start lg:px-4 md:px-8 sm:px-6 px-2 lg:py-0 py-6`}>
+      <div className={`${isExpanded ? 'lg:h-fit max-h-screen opacity-100 translate-y-0' : 'max-h-0 opacity-0 translate-y-6 pointer-events-none py-0'}  overflow-y-auto hide-scrollbar transition-all duration-1000 ease-in-out flex lg:flex-row flex-col lg:items-start items-center lg:justify-between justify-start lg:px-4 md:px-8 sm:px-6 px-2`}>
         <div className="flex flex-col lg:basis-3/5 items-center lg:sticky lg:top-0 lg:overflow-hidden">
           <button
             type="button"
             onClick={() => dispatch(setIsExpanded(false))}
-            className="self-end text-white lg:pt-4 lg:pr-6 lg:pb-0 pb-6"
+            className="self-end text-white lg:pt-4 lg:mt-0 mt-8 lg:pr-6 lg:pb-0 pb-6"
           >
             <RiArrowDownSLine size={38} />
           </button>
@@ -141,7 +141,7 @@ const MusicPlayer = () => {
             />
           </div>
 
-          <div className="lg:w-fit w-full text-center pb-10">
+          <div className="sm:w-fit w-full text-center pb-10">
             <MarqueeText
               text={activeSong?.title}
               className="text-white font-bold md:text-3xl text-2xl"
@@ -179,32 +179,30 @@ const MusicPlayer = () => {
           </div>
         </div>
 
-        {isExpanded ? (
-          <div className="w-full lg:basis-2/5">
-            <h1 className="font-bold md:text-2xl text-xl text-white lg:mt-4 mb-6">Related Songs:</h1>
-            {relatedSongs?.length ? (
-              relatedSongs.map((song, i) => (
-                <SongBar
-                  key={`${song.id}-related`}
-                  song={song}
-                  i={i}
-                  isPlaying={isPlaying}
-                  activeSong={activeSong}
-                  handlePauseClick={handleRelatedPause}
-                  handlePlayClick={handleRelatedPlay}
-                  noLink
-                />
-              ))
-            ) : (
-              <div className="flex flex-col items-center justify-center py-10 gap-3 animate-slowfade">
-                <span className="text-6xl select-none">🦗</span>
-                <p className="text-white text-lg font-bold text-center">
-                  No related songs found for this artist.
-                </p>
-              </div>
-            )}
-          </div>
-        ) : null }
+        <div className={`w-full lg:basis-2/5 ${isExpanded ? 'animate-slideup [animation-duration:1.5s]' : ''}`}>
+          <h1 className="font-bold md:text-2xl text-xl text-white lg:mt-4 mb-6">Related Songs:</h1>
+          {relatedSongs?.length ? (
+            relatedSongs.map((song, i) => (
+              <SongBar
+                key={`${song.id}-related`}
+                song={song}
+                i={i}
+                isPlaying={isPlaying}
+                activeSong={activeSong}
+                handlePauseClick={handleRelatedPause}
+                handlePlayClick={handleRelatedPlay}
+                noLink
+              />
+            ))
+          ) : (
+            <div className="flex flex-col items-center justify-center py-10 gap-3 animate-slowfade">
+              <span className="text-6xl select-none">🦗</span>
+              <p className="text-white text-lg font-bold text-center">
+                No related songs found for this artist.
+              </p>
+            </div>
+          )}
+        </div>
       </div>
     </>
   );
