@@ -2,6 +2,8 @@ import Lottie from 'lottie-react';
 import { FaPauseCircle, FaPlayCircle } from 'react-icons/fa';
 import musicSond from '../../assets/animation/voice-animation.json';
 
+const isTouchDevice = typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches;
+
 const PlayPause = ({
   isPlaying,
   activeSong,
@@ -14,7 +16,9 @@ const PlayPause = ({
 }) => {
   const isActive = isPlaying && activeSong?.title === song?.title;
 
-  if (isActive && !isHoverSong) {
+  const shouldShow = isHoverSong || isTouchDevice;
+
+  if (isActive && !shouldShow) {
     return (
       <div className="animate-slidedown [animation-duration:0.5s]">
         <Lottie
@@ -28,7 +32,7 @@ const PlayPause = ({
     );
   }
 
-  if (isActive && isHoverSong) {
+  if (isActive && shouldShow) {
     return (
       <div className="animate-slideup [animation-duration:0.5s]">
         <FaPauseCircle
@@ -40,7 +44,7 @@ const PlayPause = ({
     );
   }
 
-  if (!isActive && isHoverSong) {
+  if (!isActive && shouldShow) {
     return (
       <div className="animate-slideright [animation-duration:0.5s]">
         <FaPlayCircle
@@ -52,7 +56,7 @@ const PlayPause = ({
     );
   }
 
-  if (!isActive && !isHoverSong && showDefaultPlay) {
+  if (!isActive && !shouldShow && showDefaultPlay) {
     return (
       <div className="animate-slideright [animation-duration:0.5s]">
         <FaPlayCircle

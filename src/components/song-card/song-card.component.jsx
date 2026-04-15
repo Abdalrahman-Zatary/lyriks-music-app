@@ -5,9 +5,12 @@ import { Link } from 'react-router-dom';
 import PlayPause from '../play-pause/play-pause.component';
 import { playPause, setActiveSong } from '../../redux/features/playerSlice';
 
+const isTouchDevice = typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches;
+
 const SongCard = ({ song, isPlaying, activeSong, data, i }) => {
   const dispatch = useDispatch();
   const [isHoverSong, setIsHoverSong] = useState(false);
+  const isCurrentlyActive = isPlaying && activeSong?.id === song?.id;
 
   const handlePauseClick = () => {
     dispatch(playPause(false));
@@ -21,11 +24,12 @@ const SongCard = ({ song, isPlaying, activeSong, data, i }) => {
     <div
       onMouseEnter={() => setIsHoverSong(true)}
       onMouseLeave={() => setIsHoverSong(false)}
+      onClick={isTouchDevice && !isCurrentlyActive ? handlePlayClick : undefined}
       className="flex flex-col w-[157px] p-2 bg-gradient-to-tl from-white/40 to-[#191624]/50 backdrop-blur-sm animate-slideup rounded-md cursor-pointer"
     >
       <div className="relative w-full h-[135px] group">
         <div
-          className={`absolute inset-0 bottom-[-6px] justify-center items-center bg-black bg-opacity-50 group-hover:flex duration-300 ${isHoverSong || (isPlaying && activeSong?.id === song?.id) ? 'flex' : 'opacity-0'}`}
+          className={`absolute inset-0 bottom-[-6px] justify-center items-center bg-black bg-opacity-50 group-hover:flex duration-300 ${isHoverSong || isCurrentlyActive ? 'flex' : 'opacity-0'}`}
         >
           <PlayPause
             isPlaying={isPlaying}
