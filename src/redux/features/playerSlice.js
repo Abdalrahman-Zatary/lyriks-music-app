@@ -5,6 +5,7 @@ const INITIAL_STATE = {
   currentIndex: 0,
   isActive: false,
   isPlaying: false,
+  isExpanded: false,
   activeSong: {},
   genreListId: localStorage.getItem('genre') || 'soul',
 };
@@ -58,6 +59,10 @@ const playerSlice = createSlice({
       state.genreListId = action.payload;
       localStorage.setItem('genre', action.payload);
     },
+
+    setIsExpanded: (state, action) => {
+      state.isExpanded = action.payload;
+    },
   },
 });
 
@@ -67,6 +72,7 @@ export const {
   prevSong,
   playPause,
   setGenreListId,
+  setIsExpanded,
 } = playerSlice.actions;
 
 export default playerSlice.reducer;
