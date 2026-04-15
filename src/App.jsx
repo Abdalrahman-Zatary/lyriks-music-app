@@ -51,8 +51,9 @@ const App = () => {
         </div>
       </div>
 
+      {/* animate-slideup bg-gradient-to-b from-white/30 to-[#191624]/10 backdrop-blur-lg rounded-t-2xl z-10 */}
       {activeSong?.title && (
-        <div className="fixed h-[70px] bottom-0 left-0 right-0 flex animate-slideup bg-gradient-to-b from-white/30 to-[#191624]/10 backdrop-blur-lg rounded-t-2xl z-10">
+        <div className="fixed inset-x-0 animate-slideup bottom-0 flex flex-col z-30">
           <MusicPlayer />
         </div>
       )}
