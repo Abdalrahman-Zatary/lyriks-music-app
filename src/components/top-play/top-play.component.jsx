@@ -1,4 +1,3 @@
-import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -17,14 +16,9 @@ const TopPlay = () => {
   const { activeSong, isPlaying } = useSelector((state) => state.player);
   const { data: topSongsData } = useGetTopChartsQuery();
   const { data: topArtistsData } = useGetTopArtistsQuery();
-  const topPlayRef = useRef(null);
 
   const topPlays = topSongsData?.slice(0, 5);
   const topArtists = topArtistsData?.slice(0, 7);
-
-  useEffect(() => {
-    topPlayRef.current.scrollIntoView({ behavior: 'smooth' });
-  });
 
   const handlePauseClick = () => {
     dispatch(playPause(false));
@@ -37,7 +31,6 @@ const TopPlay = () => {
 
   return (
     <div
-      ref={topPlayRef}
       className="xl:ml-4 ml-0 xl:mb-0 mb-6 flex-1 xl:max-w-[380px] max-w-full flex flex-col"
     >
       <div className="w-full flex flex-col">

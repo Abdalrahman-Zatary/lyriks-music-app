@@ -48,11 +48,9 @@ const App = () => {
               <Route path="/search/:searchTerm" element={<Search />} />
             </Routes>
           </div>
-          {!hideTopPlay && (
-            <div className="xl:sticky relative top-0 h-fit order-first xl:order-none">
-              <TopPlay />
-            </div>
-          )}
+          <div className={`xl:sticky relative top-0 h-fit order-first xl:order-none ${hideTopPlay ? 'hidden xl:block' : 'block'}`}>
+            <TopPlay />
+          </div>
         </div>
       </div>
 
