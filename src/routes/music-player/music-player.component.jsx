@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RiArrowDownSLine } from 'react-icons/ri';
 
@@ -9,7 +9,15 @@ import { useGetRelatedSongsQuery } from '../../redux/services/deezerApi';
 import disc from '../../assets/disco-icon.png';
 
 const MusicPlayer = () => {
-  const { activeSong, currentSongs, currentIndex, isActive, isPlaying } = useSelector((state) => state.player);
+  const {
+    activeSong,
+    currentSongs,
+    currentIndex,
+    isActive,
+    isPlaying,
+    isExpanded,
+  } = useSelector((state) => state.player);
+
   const [duration, setDuration] = useState(0);
   const [seekTime, setSeekTime] = useState(0);
   const [appTime, setAppTime] = useState(0);
@@ -18,34 +26,58 @@ const MusicPlayer = () => {
   const [shuffle, setShuffle] = useState(false);
   const dispatch = useDispatch();
 
-  const {
-    data: relatedSongs,
-  } = useGetRelatedSongsQuery(activeSong?.artist?.id, { skip: !activeSong?.artist?.id });
+  // Swipe gesture refs
+  const touchStartY = useRef(null);
+  const expandedRef = useRef(null);
 
-  const { isExpanded } = useSelector((state) => state.player);
+  const { data: relatedSongs } = useGetRelatedSongsQuery(
+    activeSong?.artist?.id,
+    { skip: !activeSong?.artist?.id },
+  );
 
   useEffect(() => {
     if (currentSongs.length) dispatch(playPause(true));
   }, [currentIndex]);
 
+  const onMiniTouchStart = (e) => {
+    if (window.innerWidth >= 768) return;
+    touchStartY.current = e.touches[0].clientY;
+  };
+
+  const onMiniTouchEnd = (e) => {
+    if (window.innerWidth >= 768 || touchStartY.current === null) return;
+    const deltaY = e.changedTouches[0].clientY - touchStartY.current;
+    touchStartY.current = null;
+    if (deltaY < -50) dispatch(setIsExpanded(true));
+  };
+
+  const onExpandedTouchStart = (e) => {
+    if (window.innerWidth >= 768) return;
+    touchStartY.current = e.touches[0].clientY;
+  };
+
+  const onExpandedTouchEnd = (e) => {
+    if (window.innerWidth >= 768 || touchStartY.current === null) return;
+    const deltaY = e.changedTouches[0].clientY - touchStartY.current;
+    const scrollTop = expandedRef.current?.scrollTop ?? 0;
+    touchStartY.current = null;
+    if (deltaY > 50 && scrollTop === 0) dispatch(setIsExpanded(false));
+  };
+
   const handlePlayPause = () => {
     if (!isActive) return;
-
-    if (isPlaying) {
-      dispatch(playPause(false));
-    } else {
-      dispatch(playPause(true));
-    }
+    dispatch(playPause(!isPlaying));
   };
 
   const handleNextSong = () => {
     dispatch(playPause(false));
-
-    if (!shuffle) {
-      dispatch(nextSong((currentIndex + 1) % currentSongs.length));
-    } else {
-      dispatch(nextSong(Math.floor(Math.random() * currentSongs.length)));
-    }
+    dispatch(
+      nextSong(
+        shuffle
+          ? Math.floor(Math.random() * currentSongs.length)
+          : (currentIndex + 1) % currentSongs.length,
+      ),
+    );
   };
 
   const handlePrevSong = () => {
@@ -58,9 +90,7 @@ const MusicPlayer = () => {
     }
   };
 
-  const handleRelatedPause = () => {
-    dispatch(playPause(false));
-  };
+  const handleRelatedPause = () => dispatch(playPause(false));
   const handleRelatedPlay = (song, i) => {
     dispatch(setActiveSong({ song, data: relatedSongs, i }));
     dispatch(playPause(true));
@@ -68,7 +98,16 @@ const MusicPlayer = () => {
 
   return (
     <>
-      <div className={`${isExpanded ? 'max-h-0 opacity-0 translate-y-6 pointer-events-none' : 'h-[70px] max-h-[70px] opacity-100 translate-y-0'} overflow-hidden transition-all duration-1000 ease-in-out bg-gradient-to-b from-white/30 to-[#191624]/10 backdrop-blur-lg rounded-t-2xl flex items-center justify-between sm:px-8 px-5`}>
+      {/* Mini player (collapsed bar) */}
+      <div
+        onTouchStart={onMiniTouchStart}
+        onTouchEnd={onMiniTouchEnd}
+        className={`${
+          isExpanded
+            ? 'max-h-0 opacity-0 translate-y-6 pointer-events-none'
+            : 'h-[70px] max-h-[70px] opacity-100 translate-y-0'
+        } overflow-hidden transition-all duration-1000 ease-in-out bg-gradient-to-b from-white/30 to-[#191624]/10 backdrop-blur-lg rounded-t-2xl flex items-center justify-between sm:px-8 px-5`}
+      >
         <Track
           isPlaying={isPlaying}
           isActive={isActive}
@@ -117,7 +156,17 @@ const MusicPlayer = () => {
         />
       </div>
 
-      <div className={`${isExpanded ? 'lg:h-fit max-h-screen opacity-100 translate-y-0' : 'max-h-0 opacity-0 translate-y-6 pointer-events-none py-0'}  overflow-y-auto hide-scrollbar transition-all duration-1000 ease-in-out flex lg:flex-row flex-col lg:items-start items-center lg:justify-between justify-start lg:px-4 md:px-8 sm:px-6 px-2`}>
+      {/* Expanded player */}
+      <div
+        ref={expandedRef}
+        onTouchStart={onExpandedTouchStart}
+        onTouchEnd={onExpandedTouchEnd}
+        className={`${
+          isExpanded
+            ? 'lg:h-fit max-h-screen opacity-100 translate-y-0'
+            : 'max-h-0 opacity-0 translate-y-6 pointer-events-none py-0'
+        } overflow-y-auto hide-scrollbar transition-all duration-1000 ease-in-out flex lg:flex-row flex-col lg:items-start items-center lg:justify-between justify-start lg:px-4 md:px-8 sm:px-6 px-2`}
+      >
         <div className="flex flex-col lg:basis-3/5 items-center lg:sticky lg:top-0 lg:overflow-hidden">
           <button
             type="button"
@@ -127,7 +176,11 @@ const MusicPlayer = () => {
             <RiArrowDownSLine size={38} />
           </button>
 
-          <div className={`relative sm:w-96 w-72 sm:h-96 h-72 rounded-full shrink-0 overflow-hidden lg:mb-6 mb-10 ${isPlaying && isActive ? 'animate-[spin_8s_linear_infinite]' : ''}`}>
+          <div
+            className={`relative sm:w-96 w-72 sm:h-96 h-72 rounded-full shrink-0 overflow-hidden lg:mb-6 mb-10 ${
+              isPlaying && isActive ? 'animate-[spin_8s_linear_infinite]' : ''
+            }`}
+          >
             <img
               src={disc}
               alt="disc"
