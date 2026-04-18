@@ -33,7 +33,7 @@ export const deezerApi = createApi({
       query: ({ songid }) => `/track/${songid}`,
     }),
     getArtistDetails: builder.query({
-      query: (artistId) => `/artist/${artistId}/`,
+      query: (artistId) => `/artist/${artistId}`,
     }),
     getRelatedSongs: builder.query({
       query: (artistId) => `/artist/${artistId}/top?limit=20`,
